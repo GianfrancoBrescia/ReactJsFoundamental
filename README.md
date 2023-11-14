@@ -1,10 +1,10 @@
-# Corso ReactJS Foundamental
+# ReactJsFoundamental
 
 Questo repository contiene esempi relativi ai concetti base di ReactJS.
 
 La struttura del repository è composta nel seguente modo:
 ```
-Corso ReactJS Foundamental
+ReactJsFoundamental
 |__ esercizio_1_form_con_JSX
 |   |   Form_JSX_approccio_componenti.html
 |   |   Form_JSX_approccio_funzionale.html
