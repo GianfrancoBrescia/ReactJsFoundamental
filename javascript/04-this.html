@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>04 - This</title>
+</head>
+
+<body>
+<script>
+    /*
+    function persona(){
+        this.nome = "pippo"
+        console.log(this)
+    }
+
+    new persona() // 1 modo come oggetto
+
+    persona()  // 2 modo  come funzione
+
+
+    var obj = {func:persona}
+    obj.func()  // 3 modo   come metodo di oggetto
+    */
+
+
+    //PROBLEMA!!!!
+    /*
+    var mioObj = {
+                    mioArray:["A","B","C","D"],
+                    stampa:function(){
+                        var self = this
+                        window.setTimeout(function(){
+                            console.log(this)
+                            console.log(self.mioArray)
+                        },1000)
+
+                    }
+    }
+    mioObj.stampa()
+    */
+    //LAMBDA!!!
+
+
+    let mioObj = {
+        mioArray: ["A", "B", "C", "D"],
+        stampa: function () {
+            console.log(this)
+            window.setTimeout(function () {
+                console.log(this)
+            }, 1000)
+            window.setTimeout(() => {
+                console.log(this.mioArray)
+            }, 1000)
+
+
+        }
+    }
+    mioObj.stampa()
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>00 - Array Associativi</title>
+</head>
+
+<body>
+<script>
+    let contatore = 0
+    let a = {0: "10", 1: "20", 2: "30", 3: "40"}
+    for (const appo in a) {
+        console.log(a[appo])
+        contatore++
+    }
+    a.length = contatore
+    console.log("lunghezza a: ", a.length)
+
+    let b = new Array(10)
+    console.log("lunghezza b: ", b.length)
+    b[150] = "ciao"
+    for (const appo in b) {
+        console.log(b[appo])
+    }
+    console.log("lunghezza b: ", b.length)
+</script>
+</body>
+</html>

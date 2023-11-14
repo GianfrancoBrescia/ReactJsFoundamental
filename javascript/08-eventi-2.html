@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>08 - Eventi: Parte II</title>
+</head>
+
+<style>
+    div {
+        border: solid red 1px;
+        padding: 5px;
+        width: 40%;
+    }
+</style>
+<body>
+<div id="contenitore">
+    <input id="uno" type="button" value="bottone 1">
+    <input id="due" type="button" value="bottone 2">
+    <input id="tre" type="button" value="bottone 3">
+</div>
+
+<script>
+    let contenitore = document.getElementById("contenitore");
+    contenitore.addEventListener("click", faQualcosa)
+
+    function faQualcosa(e) {
+        if (e.target !== e.currentTarget) {
+            const cliccato = e.target.id;
+            console.log("Hai cliccato : " + cliccato)
+        }
+    }
+</script>
+</body>
+</html>

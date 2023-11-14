@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>02 - Funzioni</title>
+</head>
+
+<body>
+<script>
+    function moltiplica(a, b) {  // funzione classica
+        return a * b
+    }
+    console.log(moltiplica(3, 2))
+
+
+    const moltiplica2 = function (a, b) {  // funzione anonima
+        return a * b
+    };
+    console.log(moltiplica2(3, 2))
+
+
+    const moltiplica3 = (a, b) => a * b;  // funzione lambda
+    console.log(moltiplica3(3, 2))
+
+
+    const moltiplica4 = new Function("a", "b", "return a * b");
+    console.log(moltiplica4(3, 2))
+</script>
+</body>
+</html>

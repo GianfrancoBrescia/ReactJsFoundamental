@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>07 - Map, Filter, Reduce</title>
+</head>
+
+<body>
+<script>
+    const array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    for (const elem in array) {
+        console.log(array[elem])
+    }
+
+    function stampa(array) {
+        array.forEach(function (elem) {
+            console.log("forEach", elem)
+        })
+    }
+
+
+    // MAP
+    const ris = array.map((elem) => elem * elem);
+    console.log("*****************")
+    stampa(ris)
+
+
+    // FILTER
+    const ris2 = array.filter((elem) => (elem % 2 === 0) ? elem : null).filter(e => !!e);
+    console.log("*****************")
+    stampa(ris2)
+
+
+    // REDUCE
+    const ris3 = array.reduce((a, b) => {
+        console.log(a, b);
+        return a + b
+    })
+    console.log("Risultato", ris3)
+</script>
+</body>
+</html>

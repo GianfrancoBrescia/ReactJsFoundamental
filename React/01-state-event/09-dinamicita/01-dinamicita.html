@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../../lib/react.js"></script>
+    <script src="../../../lib/react-dom.js"></script>
+    <script src="../../../lib/browser.min.js"></script>
+    <title>09.01 - Dinamicita</title>
+</head>
+<body>
+
+<div id="root">
+</div>
+
+<script type="text/babel">
+
+    function Clock(props) {
+        return <div>
+            <h1>Orologio</h1>
+            <h2>Ora: {props.date.toLocaleTimeString()} </h2>
+        </div>
+    }
+
+    function tickreusable() {
+        console.log("Prima di render.....")
+        ReactDOM.render(
+            <Clock date={new Date()}/>,
+            document.getElementById("root")
+        )
+    }
+
+    setInterval(() => tickreusable(), 1000);
+</script>
+</body>
+</html>

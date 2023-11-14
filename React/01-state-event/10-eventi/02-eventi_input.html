@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../../lib/react.js"></script>
+    <script src="../../../lib/react-dom.js"></script>
+    <script src="../../../lib/browser.min.js"></script>
+    <title>10.02 - Eventi Input</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class Container extends React.Component {
+
+        constructor(props) {
+            super(props)
+
+            // 1° Metodo
+            this.handleSave = this.handleSave.bind(this)
+
+            // 2° Metodo
+            this.gestisciMioCampo = this.gestisciMioCampo.bind(this)
+            this.state = {miocampo: ""}
+
+            // 3° Metodo
+            this.miocampoRef = React.createRef()
+        }
+
+
+        handleSave(event) {
+            console.log("handleSave")
+            console.log("event", event)
+            console.log("this", this)
+            console.log("state", this.state.miocampo)
+
+            // 1° Metodo
+            console.log("getElementById", document.getElementById("mioCampo").value)
+
+            // 3° Metodo
+            console.log("Ref", this.miocampoRef.current.value)
+        }
+
+        gestisciMioCampo(event) {
+            this.setState({miocampo: event.target.value})
+        }
+
+        render() {
+            return (
+                <div>
+                    <label for="mioCampo" hidden={true}/>
+                    <input type="text"
+                           ref={this.miocampoRef}
+                           onChange={this.gestisciMioCampo}
+                           id="mioCampo"
+                           placeholder="Scrivi qualcosa..."/>
+                    <button onClick={this.handleSave}>Salva1</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <div><Container/></div>,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

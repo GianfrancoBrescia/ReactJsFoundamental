@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>00 - Array</title>
+</head>
+
+<body>
+<script>
+    let mioArray = new Array(6);
+
+    console.log(mioArray.length)
+
+    mioArray[0] = "Pino"
+    mioArray[1] = "Lino"
+    mioArray[2] = "Gino"
+    mioArray[3] = "Vino"
+    mioArray[4] = "Zino"
+    mioArray[5] = "Rino"
+    mioArray[50] = "*****"
+
+    console.log(mioArray.length)
+
+    for (const elem in mioArray) {
+        console.log("Elemento: " + mioArray[elem])
+    }
+</script>
+</body>
+</html>

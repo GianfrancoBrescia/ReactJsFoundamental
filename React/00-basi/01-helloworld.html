@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>01 - Hello World</title>
+</head>
+<body>
+<div id="root">
+</div>
+<script>
+    // React.createElement accetta tag/componente - properties - contenuto
+    let h1 = React.createElement("h1", {id: "h1"}, "Hello World")
+
+    // ReactDom.render renderizza l'oggetto nella posizione
+    ReactDOM.render(h1, document.getElementById("root"))
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>07 - Liste</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class Item extends React.Component {
+        render() {
+            return <li>{this.props.elemento}</li>
+        }
+    }
+
+    class TodoList extends React.Component {
+        render() {
+            const todos = ["primo", "secondo", "terzo", "quarto", "quinto"]
+            return <ul>{todos.map((elem) => <Item key={elem} elemento={elem}/>)}</ul>
+        }
+
+    }
+
+
+    ReactDOM.render(
+        <div><TodoList/></div>,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

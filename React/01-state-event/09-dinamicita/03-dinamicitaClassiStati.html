@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../../lib/react.js"></script>
+    <script src="../../../lib/react-dom.js"></script>
+    <script src="../../../lib/browser.min.js"></script>
+    <title>09.03 - Dinamicita Classi Stati</title>
+</head>
+<body>
+
+<div id="root">
+</div>
+
+<script type="text/babel">
+
+    class Clock extends React.Component {
+
+        constructor(props) {
+            super(props)
+            this.state = {currentTime: (new Date().toLocaleTimeString())}
+            this.aggiornaOrologio()
+        }
+
+        aggiornaOrologio() {
+            console.log("aggiornaOrologio", this)
+            /*NON FUNZIONA!!!!*/
+            /*setInterval(function(){
+               console.log("aggiornaOrologio setInterval",this)
+              // this.setState({currentTime:(new Date().toLocaleTimeString())})
+            }, 1000);
+            */
+
+            /* 1° Metodo lambda: FUNZIONA!!!!*/
+            /* setInterval(()=>{
+                console.log("aggiornaOrologio setInterval",this)
+                this.setState({currentTime:(new Date().toLocaleTimeString())})
+             }, 1000);
+             */
+
+            /* 2° Metodo self = this : FUNZIONA!!!!*/
+            /*var self = this
+             setInterval(function(){
+                console.log("aggiornaOrologio setInterval",self)
+                self.setState({currentTime:(new Date().toLocaleTimeString())})
+             }, 1000);
+             */
+
+            /* 3° Metodo bind!: FUNZIONA!!!!*/
+            setInterval(function () {
+                console.log("aggiornaOrologio setInterval", this)
+                this.setState({currentTime: (new Date().toLocaleTimeString())})
+            }.bind(this), 1000);
+        }
+
+
+        render() {
+            console.log("Prima di render di Clock.....")
+            return <div>
+                <h1>Orologio</h1>
+                <h2>Ora: {this.state.currentTime} </h2>
+            </div>
+        }
+    }
+
+
+    // Il programa inizia qui.
+    ReactDOM.render(
+        <Clock/>,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

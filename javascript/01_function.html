@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>01 - Funzioni</title>
+</head>
+
+<body>
+<script>
+    // non esiste in javascript l'overloading -> chiama sempre l'ultima!!!!
+
+    function funcParametri() {
+        console.log("Prima funzione ", arguments.length)
+        console.log(arguments)
+    }
+
+    function funcParametri(a, b) {
+        console.log("Seconda funzione ", arguments.length, a, b)
+        console.log(arguments)
+    }
+
+    function funcParametri(a, b, c) {
+        console.log("Terza funzione ", arguments.length, a, b, c)
+        console.log(arguments)
+    }
+
+    funcParametri()
+</script>
+</body>
+</html>

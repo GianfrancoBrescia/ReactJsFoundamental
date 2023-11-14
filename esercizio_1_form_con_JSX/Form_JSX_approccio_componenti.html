@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+    <title>Form Approccio Componenti</title>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class Field extends React.Component {
+        render() {
+            return <div style={{paddingBottom: "5px"}}>
+                <label for={this.props.id}>{this.props.label}: </label>
+                <input type={this.props.type} id={this.props.id} name={this.props.name}/>
+            </div>
+        }
+    }
+
+    class SelectField extends React.Component {
+        render() {
+            return <div>
+                <label for={this.props.id}>{this.props.label}: </label>
+                <select name={this.props.name} id={this.props.id}>
+                    {this.props.value.map(v => <option key={`opzione ${v}`} value={v}>{v}</option>)}
+                </select>
+            </div>
+        }
+    }
+
+    class Button extends React.Component {
+        render() {
+            return <div style={{paddingTop: "5px"}}>
+                <button type={this.props.type}>{this.props.label}</button>
+            </div>
+        }
+    }
+
+    ReactDOM.render(
+        <div>
+            <Field id="1" label="Nome" name="nome" type="text"/>
+            <Field id="2" label="Cognome" name="cognome" type="text"/>
+            <Field id="3" label="Email" name="email" type="text"/>
+            <Field id="4" label="Password" name="password" type="password"/>
+            <Field id="5" label="Citt&agrave;" name="citta" type="text"/>
+            <SelectField id="6" label="Sesso" name="sesso" value={['F', 'M']}/>
+            <Button id="7" label="Salva" type="button" onClick={() => undefined}/>
+        </div>,
+        document.getElementById("root")
+    );
+</script>
+</body>
+</html>

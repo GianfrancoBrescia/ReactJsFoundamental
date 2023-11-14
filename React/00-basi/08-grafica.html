@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>08 - Grafica</title>
+</head>
+
+<style>
+    .trasformata {
+        font-size: 50px;
+    }
+</style>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class MiaLabel extends React.Component {
+        render() {
+            return <label {...this.props}>Etichetta</label>
+        }
+    }
+
+    class MioSpan extends React.Component {
+        render() {
+            return <span {...this.props}>Span</span>
+        }
+    }
+
+    class Container extends React.Component {
+        render() {
+            return (
+                <div>
+                    <MiaLabel pippo={[1, 2, 3, 4]} id="valore" htmlFor="for..." style={{fontSize: '30px'}}/>
+                    <MioSpan id="valore2" className="trasformata" style={{backgroundColor: 'yellow'}}/>
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(
+        <div><Container/></div>,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

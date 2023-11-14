@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>06 - Call, Bind, Apply</title>
+</head>
+
+<body>
+<script>
+    const persona = {
+        nome: "Mario",
+        eta: 35
+    }
+
+    const cane = {
+        nome: "Pluto",
+        eta: 4
+    }
+
+    function stampaNomeEta(moltiplicatore) {
+        if (!moltiplicatore) moltiplicatore = 1
+        console.log("Nome: " + this.nome, " Eta: " + this.eta * moltiplicatore)
+    }
+
+    function stampaNomeEtaApply(moltiplicatore, soprannome) {
+        if (!moltiplicatore) moltiplicatore = 1
+        console.log("Nome: " + this.nome, " Eta: " + this.eta * moltiplicatore, " soprannome: " + soprannome)
+    }
+
+    // CALL fa girare una funzione nel contesto passatogli, opzionale accetta un parametro
+    stampaNomeEta.call(persona)
+    stampaNomeEta.call(cane, 7)
+
+    // APPLY == call ma accetta un array di parametri....
+    stampaNomeEtaApply.apply(persona)
+    stampaNomeEtaApply.apply(cane, [7, "plutino"])
+
+
+    // BIND collega una funzione ad un oggetto senza richiamarla!
+    const func1 = stampaNomeEta.bind(persona)
+    const func2 = stampaNomeEta.bind(cane, 7)
+
+    func1()
+    func2()
+</script>
+</body>
+</html>

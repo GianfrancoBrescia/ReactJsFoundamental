@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>02 - Approccio A Componenti</title>
+</head>
+<body>
+<div id="root">
+</div>
+<script>
+    // approccio a Componenti
+    class HelloWorld extends React.Component {
+        //override del metodo che torna un pezzo di html
+        render() {
+            return React.createElement("h1", null, "Hello World")
+        }
+    }
+
+    ReactDOM.render(
+        React.createElement(HelloWorld),
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

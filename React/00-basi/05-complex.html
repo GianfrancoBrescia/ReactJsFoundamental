@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>05 - Complex</title>
+</head>
+<body>
+<div id="root">
+</div>
+<script>
+    // approccio a Componenti
+    // this.props è una proprietà di component che raccoglie le proprità passate da fuori
+    class HelloWorld extends React.Component {
+        // override del metodo che torna un pezzo di html
+        render() {
+            console.log("Props di Hello World", this)
+            return React.createElement("h1", {id: this.props.identificatore}, "Ciao " + this.props.nome)
+        }
+
+    }
+
+    ReactDOM.render(
+        React.createElement(
+            "div",
+            null,
+            React.createElement(HelloWorld, {identificatore: "1", nome: "Pino"}),
+            React.createElement(HelloWorld, {identificatore: "2", nome: "Lino"}),
+            React.createElement(HelloWorld, {identificatore: "3", nome: "Gino"})
+        ),
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

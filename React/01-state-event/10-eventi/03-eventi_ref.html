@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../../lib/react.js"></script>
+    <script src="../../../lib/react-dom.js"></script>
+    <script src="../../../lib/browser.min.js"></script>
+    <title>10.03 - Eventi Ref</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class Container extends React.Component {
+
+        constructor(props) {
+            super(props)
+            this.handleSave = this.handleSave.bind(this)
+            this.miocampoInput = null
+
+            // funzione di callback
+            this.setMiocampoinput = elemento => this.miocampoInput = elemento
+        }
+
+
+        handleSave() {
+            console.log("Ref", this.miocampoInput.value)
+        }
+
+
+        render() {
+            return (
+                <div>
+                    <label for="mioCampo" hidden={true}/>
+                    <input id="mioCampo" type="text" ref={this.setMiocampoinput} placeholder="Scrivi qualcosa..."/>
+                    <button onClick={this.handleSave}>Salva1</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <div><Container/></div>,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

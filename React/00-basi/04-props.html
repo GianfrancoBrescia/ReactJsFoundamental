@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>04 - Props</title>
+</head>
+<body>
+<div id="root">
+</div>
+<script>
+    // approccio a Componenti
+    let h1 = React.createElement("h1", {id: "h1"}, "Hello World")
+
+
+    // this.props è una proprietà di component che raccoglie le proprità passate da fuori
+    class HelloWorld extends React.Component {
+        // override del metodo che torna un pezzo di html
+        render() {
+            console.log("Props di Hello World", this)
+            return React.createElement("div", {id: this.props.identificatore}, h1)
+        }
+
+    }
+
+    ReactDOM.render(
+        React.createElement(HelloWorld, {identificatore: "pippo"}),
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

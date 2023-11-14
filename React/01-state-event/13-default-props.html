@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+    <title>13 - Default Props</title>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class Button extends React.Component {
+        render() {
+            return <button>{this.props.buttonLabel}</button>
+        }
+    }
+
+    Button.defaultProps = {buttonLabel: "Invia"}
+
+
+    class ButtonAdvanced extends React.Component {
+        render() {
+            return <button>{this.props.buttonLabel}</button>
+        }
+    }
+
+    ButtonAdvanced.defaultProps = {buttonLabel: "Advanced"}
+    ButtonAdvanced.propTypes = {
+        title: PropTypes.string,
+        handler: PropTypes.func.isRequired,
+        email(props, propName, componentName) {
+            const emailRexExpr = /\S+@\S+\.\S+/
+            if (!emailRexExpr.test(props[propName])) {
+                return new Error("Email non valida")
+            }
+        }
+    }
+
+    class Container extends React.Component {
+        render() {
+            return (
+                <div>
+                    <Button buttonLabel="Start"/>
+                    <Button/>
+                    <ButtonAdvanced email="pippo@pluto.it" handler={() => {
+                    }} title="{10}"/>
+                </div>
+            )
+
+        }
+    }
+
+    ReactDOM.render(
+        <div><Container/></div>,
+        document.getElementById("root")
+    )
+</script>
+
+</body>
+</html>

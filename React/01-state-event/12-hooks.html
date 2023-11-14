@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>12 - Hooks</title>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+    function TestStateLess(props) {
+        return <div>{props.elemento}</div>
+    }
+
+
+    function TestStateFull() {
+        const [contatore, setContatore] = React.useState(0)
+        return (
+            <div>
+                <p>TestStateFul</p>
+                <p>Contatore:{contatore}
+                    <button onClick={() => setContatore(contatore + 1)}>Aumenta</button>
+                </p>
+            </div>
+        )
+    }
+
+
+    function TestStateFullObject() {
+        const [obj, setObj] = React.useState({
+            contatore: 0,
+            stringa: "Ciao"
+        })
+
+        const manipolaObj = () => {
+            setObj({
+                ...obj,
+                contatore: obj.contatore + 1
+            })
+        }
+
+        return (
+            <div>
+                <p>TestStateFullObject</p>
+                <p>{obj.stringa}</p>
+                <p>Contatore:{obj.contatore}
+                    <button onClick={manipolaObj}>Aumenta</button>
+                </p>
+            </div>
+        )
+    }
+
+
+    function TestStateFullUseEffect() {
+        const [contatore, setContatore] = React.useState(0)
+
+        // equivalente a componentDidMount e componentDidUpdate
+        React.useEffect(() => {
+            console.log("Hai cliccato....", contatore)
+        })
+
+        return (
+            <div>
+                <p>TestStateFullUseEffect</p>
+                <p>Contatore:{contatore}
+                    <button onClick={() => setContatore(contatore + 1)}>Aumenta</button>
+                </p>
+            </div>
+        )
+    }
+
+
+    class Container extends React.Component {
+        render() {
+            return (
+                <div>
+                    <TestStateLess elemento="TestStateLess"/>
+                    <TestStateFull/>
+                    <TestStateFullObject/>
+                    <TestStateFullUseEffect/>
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(
+        <div><Container/></div>,
+        document.getElementById("root")
+    )
+</script>
+
+</body>
+</html>

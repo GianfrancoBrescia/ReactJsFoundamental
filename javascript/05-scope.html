@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>05 - Scope</title>
+</head>
+
+<body>
+<script>
+    /*
+    var miaStringa = "inizio"
+    for (var i = 0;i< 3;i++){
+        var miaStringa = "fine"
+    }
+
+    console.log(miaStringa)
+    console.log(i)
+
+
+    var miaStringa2 = "inizio"
+    function test(){
+        var miaStringa2 = "fine"
+    }
+    test()
+    console.log(miaStringa2)
+    */
+
+
+
+    //funzioni autoinvocanti
+    /*
+    (function(){
+        var x = "Ciao"
+        console.log(x)
+    })()
+    console.log(x)
+    */
+
+    /*
+    var miaStringa = "inizio";
+    (function(){
+    for (var i = 0;i< 3;i++){
+           var miaStringa = "fine"
+    }})(
+
+    )
+    console.log(miaStringa)
+    console.log(i)
+    */
+
+
+    /*ECMA*/
+    let miaStringa = "inizio"
+    for (let i = 0; i < 3; i++) {
+        let miaStringa = "fine"
+    }
+    console.log(miaStringa)
+    console.log(i)
+</script>
+</body>
+</html>

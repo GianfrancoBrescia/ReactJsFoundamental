@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../../lib/react.js"></script>
+    <script src="../../../lib/react-dom.js"></script>
+    <script src="../../../lib/browser.min.js"></script>
+    <title>10.01 - Eventi</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+
+    class Container extends React.Component {
+
+        constructor(props) {
+            super(props)
+            this.handleSave = this.handleSave.bind(this)
+        }
+
+        handleSave(event) {
+            console.log("handleSave")
+            console.log("event", event)
+            console.log("this", this)
+        }
+
+        render() {
+            return (
+                <div>
+                    <button onClick={this.handleSave}>Salva1</button>
+                    { /*
+                    <button onClick={(event)=>{console.log("Salva 2",this,event)}}>Salva2</button>  
+                    <button onClick={this.handleSave.bind(this)}>Salva3</button>    
+                    <button onClick={(event)=>{ this.handleSave(event)}}>Salva4</button>    
+                */}
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(
+        <div><Container/></div>,
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

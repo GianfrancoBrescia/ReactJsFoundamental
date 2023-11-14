@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>08 - Eventi: Parte I</title>
+</head>
+
+<body>
+<p>
+    BLA BLA BLA BLA BLA
+</p>
+
+<p>
+    BLI BLI BLI BLI BLI
+</p>
+
+
+<script>
+    let pElems = document.getElementsByTagName("p")
+    for (const element of pElems) {
+        element.addEventListener("mouseover", handleMouse)
+        element.addEventListener("mouseout", handleMouse)
+    }
+
+    function handleMouse(ev) {
+        console.log("handleMouse", ev.type)
+        if (ev.type === "mouseover") {
+            ev.target.style.background = 'yellow';
+            ev.target.style.color = 'pink'
+        } else {
+            ev.target.style.removeProperty('background');
+            ev.target.style.removeProperty('color')
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <title>03 - Oggetti</title>
+</head>
+
+<body>
+<script>
+    //// 1° modo per creare gli oggetti ANONIMO istanza di Object
+    let persona1 = {}
+    persona1.nome = "Pino"
+    persona1.cognome = "Pini"
+    persona1["eta"] = 10
+    persona1["parla"] = function () {
+        console.log("Sto parlando....")
+    }
+    persona1.parla()
+    persona1["parla"]()
+    console.log("ANONIMO 1", persona1.nome, persona1["eta"])
+    console.log("ANONIMO 1 instanceof Object", persona1 instanceof Object)
+
+
+    //// 2° modo per creare gli oggetti ANONIMO
+    let persona2 = Object.create(null)
+    persona2.nome = "Pino"
+    persona2.cognome = "Pini"
+    persona2.eta = 10
+    persona2.parla = function () {
+        console.log("Sto parlando....")
+    }
+    persona2.parla()
+    persona2["parla"]()
+    console.log("ANONIMO 2", persona2.nome, persona2["eta"])
+    console.log("ANONIMO 2 instanceof Object", persona2 instanceof Object)
+
+
+    //// 3° modo per creare gli oggetti PROTOTIPO
+    function Persona(nome, cognome, eta) {
+        this.nome = nome
+        this.cognome = cognome
+        this.eta = eta
+        this.parla = function () {
+            console.log("Sto parlando....")
+        }
+    }
+
+    let persona3 = new Persona("Gino", "Gini", 20)
+    persona3.parla()
+    persona3["parla"]()
+    console.log("PROTOTIPO", persona3.nome, persona3["eta"])
+    console.log("PROTOTIPO instanceof Object", persona3 instanceof Object)
+    console.log("PROTOTIPO instanceof Persona", persona3 instanceof Persona)
+
+
+    //// 4 modo per creare gli oggetti CLASSI
+    class Persona2 {
+        constructor(nome, cognome, eta) {
+            this.nome = nome
+            this.eta = eta
+            this.cognome = cognome
+        }
+
+        parla() {
+            console.log("Sto parlando....")
+        }
+    }
+
+    let persona4 = new Persona2("Gino", "Gini", 20)
+    persona4.parla()
+    persona4["parla"]()
+    console.log("CLASSE", persona4.nome, persona4["eta"])
+    console.log("CLASSE instanceof Object", persona4 instanceof Object)
+    console.log("CLASSE instanceof Persona", persona4 instanceof Persona2)
+
+
+    //// 5 modo per creare gli oggetti JSON
+    let persona5 = {
+        nome: "Lino",
+        cognome: "Lini",
+        eta: 10,
+        parla: function () {
+            console.log("Sto parlando....")
+        },
+    }
+    persona5.parla()
+    persona5["parla"]()
+    console.log("JSON", persona5.nome, persona5["eta"])
+    console.log("JSON instanceof Object", persona5 instanceof Object)
+</script>
+</body>
+</html>

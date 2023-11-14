@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            font-size: 14px;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 5px;
+        }
+    </style>
+
+    <title>Lista JSX Approccio Funzionale</title>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    const objectTable = {
+        columns: ["Nome", "Cognome", "Email", "Password", "Citt&agrave;", "Sesso"],
+        rows: [
+            {
+                nome: "Mario",
+                cognome: "Rossi",
+                email: "mario.rossi@gmail.com",
+                password: "zzz",
+                citta: "Roma",
+                sesso: "M"
+            },
+            {
+                nome: "Anna",
+                cognome: "Bianchi",
+                email: "anna.bianchi@gmail.com",
+                password: "ccc",
+                citta: "Roma",
+                sesso: "F"
+            },
+            {
+                nome: "Luca",
+                cognome: "Bianchi",
+                email: "luca.bianchi@gmail.com",
+                password: "bbbb",
+                citta: "Milano",
+                sesso: "M"
+            },
+            {
+                nome: "Giovanni",
+                cognome: "Verdi",
+                email: "giovanni.verdi@gmail.com",
+                password: "vvv",
+                citta: "Milano",
+                sesso: "M"
+            },
+            {
+                nome: "Angela",
+                cognome: "Bianchi",
+                email: "angela.bianchi@gmail.com",
+                password: "nnn",
+                citta: "Milano",
+                sesso: "F"
+            },
+            {
+                nome: "Lorenzo",
+                cognome: "Rossini",
+                email: "lorenzo.rossini@gmail.com",
+                password: "gggg",
+                citta: "Milano",
+                sesso: "M"
+            }
+        ]
+    };
+
+    function Field(props) {
+        return <div style={{paddingBottom: "5px"}}>
+            <label for={props.id}>{props.label}: </label>
+            <input type={props.type} id={props.id} name={props.name}/>
+        </div>
+    }
+
+    function SelectField(props) {
+        return <div>
+            <label for={props.id}>{props.label}: </label>
+            <select name={props.name} id={props.id}>
+                {props.value.map(v => <option key={`opzione ${v}`} value={v}>{v}</option>)}
+            </select>
+        </div>
+    }
+
+    function Button(props) {
+        return <div style={{paddingTop: "5px"}}>
+            <button type={props.type}>{props.label}</button>
+        </div>
+    }
+
+    function Table(props) {
+        return <div>
+            <table id={props.id}>
+                <thead>
+                <tr>{props.columns.map(c => <th key={`opzione ${c}`} dangerouslySetInnerHTML={{__html: `${c}`}}/>)}</tr>
+                </thead>
+                <tbody>
+                {props.rows.map((r, i) => (
+                    <tr key={`opzione ${i}`} style={{backgroundColor: r.sesso === 'F' ? 'pink' : "lightSkyBlue"}}>
+                        <td>{r.nome}</td>
+                        <td>{r.cognome}</td>
+                        <td>{r.email}</td>
+                        <td>{r.password}</td>
+                        <td>{r.citta}</td>
+                        <td>{r.sesso}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+        </div>
+    }
+
+    ReactDOM.render(
+        <div>
+            <Field id="1" label="Nome" name="nome" type="text"/>
+            <Field id="2" label="Cognome" name="cognome" type="text"/>
+            <Field id="3" label="Email" name="email" type="text"/>
+            <Field id="4" label="Password" name="password" type="password"/>
+            <Field id="5" label="Citt&agrave;" name="citta" type="text"/>
+            <SelectField id="6" label="Sesso" name="sesso" value={['F', 'M']}/>
+            <Button id="7" label="Salva" type="button" onClick={() => undefined}/><br/><br/>
+            <Table id="8" columns={objectTable.columns} rows={objectTable.rows}/>
+        </div>,
+        document.getElementById("root")
+    );
+</script>
+</body>
+</html>

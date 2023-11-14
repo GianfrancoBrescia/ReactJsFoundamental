@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../../lib/react.js"></script>
+    <script src="../../lib/react-dom.js"></script>
+    <script src="../../lib/browser.min.js"></script>
+    <title>03 - Approccio Funzionale</title>
+</head>
+<body>
+<div id="root">
+</div>
+<script>
+    // approccio funzionale
+    function HelloWorld() {
+        return React.createElement("h1", null, "Hello World")
+    }
+
+    ReactDOM.render(
+        React.createElement(HelloWorld),
+        document.getElementById("root")
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!--
+* Creare una maschera per l'inserimento di auto di un parcheggio:
+* I campi di inserimento devono essere nome, cognome, email e telefono del proprietario e la targa della sua auto.
+* All'inserimento di ogni nuova targa il sistema verifica se già presente nella lista e se non è presente inserisce un nuova auto.
+*
+* Evidenziare con il colore verde la riga della macchina che ha l'ultima cifra pari, altrimenti rossa.
+-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
+    <script src="../lib/browser.min.js"></script>
+
+    <script src="./js/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            font-size: 14px;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 5px;
+        }
+    </style>
+
+    <title>Parcheggio</title>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+    class Container extends React.Component {
+        constructor(props) {
+            super(props);
+            this.changeInput = this.changeInput.bind(this);
+            this.handleSave = this.handleSave.bind(this);
+            this.state = {
+                auto: {
+                    id: null,
+                    nomeProprietario: null,
+                    cognomeProprietario: null,
+                    emailProprietario: null,
+                    telefonoProprietario: null,
+                    targa: null
+                },
+                objectTable: {
+                    columns: ["NOME", "COGNOME", "EMAIL", "TELEFONO", "TARGA"],
+                    rows: []
+                }
+            }
+        }
+
+        changeInput(event) {
+            let autoClone = {...this.state.auto};
+            autoClone[event.target.name] = event.target.value;
+            this.setState({auto: autoClone});
+        }
+
+        handleSave() {
+            if (this.state.auto.targa) {
+                if (!this.state.objectTable.rows.find(r => r.targa === this.state.auto.targa)) {
+                    let listaAutoClone = {...this.state.objectTable};
+                    listaAutoClone.rows.push(this.state.auto);
+                    this.setState({
+                        objectTable: listaAutoClone,
+                        auto: {
+                            id: null,
+                            nomeProprietario: null,
+                            cognomeProprietario: null,
+                            emailProprietario: null,
+                            telefonoProprietario: null,
+                            targa: null
+                        }
+                    });
+                } else {
+                    alert("Non è possibile inserire una stessa targa auto");
+                }
+            } else {
+                alert("Nessuna targa auto inserita");
+            }
+        }
+
+        render() {
+            return <div>
+                <label for="1" hidden={true}/>
+                <Input
+                    id="1"
+                    label="Nome"
+                    name="nomeProprietario"
+                    type="text"
+                    placeholder="Inserisci nome proprietario"
+                    value={this.state.auto.nomeProprietario}
+                    onChange={this.changeInput}
+                />
+                <label for="2" hidden={true}/>
+                <Input
+                    id="2"
+                    label="Cognome"
+                    name="cognomeProprietario"
+                    type="text"
+                    placeholder="Inserisci cognome proprietario"
+                    value={this.state.auto.cognomeProprietario}
+                    onChange={this.changeInput}
+                />
+                <label for="3" hidden={true}/>
+                <Input
+                    id="3"
+                    label="Email"
+                    name="emailProprietario"
+                    type="text"
+                    placeholder="Inserisci email proprietario"
+                    value={this.state.auto.emailProprietario}
+                    onChange={this.changeInput}
+                />
+                <label for="4" hidden={true}/>
+                <Input
+                    id="4"
+                    label="Telefono"
+                    name="telefonoProprietario"
+                    type="text"
+                    placeholder="Inserisci telefono proprietario"
+                    value={this.state.auto.telefonoProprietario}
+                    onChange={this.changeInput}
+                />
+                <label for="5" hidden={true}/>
+                <Input
+                    id="5"
+                    label="Targa"
+                    name="targa"
+                    type="text"
+                    placeholder="Inserisci targa auto"
+                    value={this.state.auto.targa}
+                    onChange={this.changeInput}
+                />
+                <Button
+                    id="6"
+                    label="Salva"
+                    type="button"
+                    onClick={this.handleSave}
+                /><br/><br/>
+                <Table
+                    id="7"
+                    columns={this.state.objectTable.columns}
+                    rows={this.state.objectTable.rows}
+                />
+            </div>;
+        }
+    }
+
+    class Input extends React.Component {
+        render() {
+            return <div className="form-group mb-0 w-25" style={{paddingBottom: "5px"}}>
+                <label for={this.props.id}>{this.props.label}: </label>
+                <input id={this.props.id}
+                       type={this.props.type}
+                       name={this.props.name}
+                       placeholder={this.props.placeholder}
+                       value={this.props.value != null ? this.props.value : ""}
+                       className="form-control"
+                       onChange={this.props.onChange}/>
+            </div>
+        }
+    }
+
+    class Button extends React.Component {
+        render() {
+            return <div style={{paddingTop: "5px"}}>
+                <button
+                    type={this.props.type}
+                    onClick={this.props.onClick}
+                    className="btn btn-primary">
+                    {this.props.label}
+                </button>
+            </div>
+        }
+    }
+
+    class Table extends React.Component {
+
+        render() {
+            return <div>
+                <table id={this.props.id}>
+                    <thead>
+                    <tr>{this.props.columns.map(c => <th key={`opzione ${c}`}>{c}</th>)}</tr>
+                    </thead>
+                    <tbody>
+                    {!this.props.rows.length
+                        ? <tr>
+                            <td colSpan={this.props.columns.length} style={{textAlign: "center"}}>Nessuna auto presente
+                                nella lista
+                            </td>
+                        </tr>
+                        : this.props.rows.map((r, i) => {
+                            const numeroTarga = new RegExp(/^[A-Z]{2}(.*?)[A-Z]{2}$/).exec(r.targa) || new RegExp(/.*(\d)$/).exec(r.targa);
+                            let style = {}
+                            if (numeroTarga != null) {
+                                const isNumeroTargaPari = numeroTarga[1].slice(-1) % 2 === 0;
+                                style = {backgroundColor: isNumeroTargaPari ? "lightgreen" : "red"};
+                            }
+                            return <tr key={`opzione ${i}`} style={style}>
+                                <td>{r.nomeProprietario}</td>
+                                <td>{r.cognomeProprietario}</td>
+                                <td>{r.emailProprietario}</td>
+                                <td>{r.telefonoProprietario}</td>
+                                <td>{r.targa}</td>
+                            </tr>
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+
+    ReactDOM.render(
+        <div className="pt-2 px-3"><Container/></div>,
+        document.getElementById("root")
+    );
+</script>
+</body>
+</html>
